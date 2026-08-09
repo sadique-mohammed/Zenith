@@ -23,7 +23,7 @@ flowchart TD
     A[User] --> B[Chrome Extension]
     B -->|domain + time, batched| C[Backend API]
     B -->|scraped page text, per navigation| C
-    C -->|classification prompt| D[Gemini 1.5 Flash]
+    C -->|classification prompt| D[Gemini Flash]
     D -->|structured classification| C
     C --> E[(MongoDB)]
     E --> F[Analytics Endpoint]
@@ -65,7 +65,7 @@ Manifest V2 extension that tracks active-tab time per domain (with idle detectio
 ## 5. AI + Analytics Pipeline
 
 1. **Collection** — the extension supplies per-domain time-on-site and raw page text per visited page.
-2. **Classification** — the backend sends each newly seen domain (and each scraped page) to Gemini 1.5 Flash with a structured prompt requesting productivity level, sentiment, category, creativity, and mood, each constrained to a fixed enumerated set of values.
+2. **Classification** — the backend sends each newly seen domain (and each scraped page) to Gemini Flash with a structured prompt requesting productivity level, sentiment, category, creativity, and mood, each constrained to a fixed enumerated set of values.
 3. **Scoring** — a weighting engine maps each classification to a numeric weight, multiplies by time spent, and normalizes the result to a 0–100 scale across several dimensions (focus, mood, creativity, productivity, sentiment, wellbeing, and an overall total), including day-of-week trend aggregation.
 4. **Visualization** — the dashboard fetches computed scores and renders them alongside raw time-per-domain and time-per-category breakdowns.
 
@@ -88,7 +88,7 @@ Classification runs once per newly observed domain or page rather than being rec
 | Backend | Node.js, Express, Mongoose |
 | Database | MongoDB |
 | Extension | Chrome Extension Manifest V2, Chrome Storage/Idle/Scripting APIs |
-| AI | Google Gemini API (`gemini-1.5-flash`) |
+| AI | Google Gemini API |
 | Auth | bcrypt, JSON Web Tokens |
 | Deployment | Google App Engine (backend), Firebase Hosting (frontend) |
 
