@@ -1,0 +1,9 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/sadique-mohammed/zenith-frontend.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/sadique-mohammed/zenith-backend.git
+[submodule "extension"]
+	path = extension
+	url = https://github.com/sadique-mohammed/zenith-extension.git
